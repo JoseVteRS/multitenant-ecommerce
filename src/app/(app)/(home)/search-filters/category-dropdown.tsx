@@ -2,15 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Category } from "@/payload-types";
+import { CategoriesGetManyOutput } from "@/modules/categories/types";
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { CustomCategory } from "../types";
 import { SubcategoryMenu } from "./subactegory-menu";
 import { useDropdownPosition } from "./use-dropdown-position";
 
-interface Props {
-  category: CustomCategory;
+interface CategoryDropdownProps {
+  category: CategoriesGetManyOutput[1];
   isActive?: boolean;
   isNavigationHovered?: boolean;
 }
@@ -19,7 +18,7 @@ export const CategoryDropdown = ({
   category,
   isActive,
   isNavigationHovered,
-}: Props) => {
+}: CategoryDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { getDropdownPosition } = useDropdownPosition(dropdownRef);
