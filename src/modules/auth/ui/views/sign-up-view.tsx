@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useTRPC } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -31,6 +31,7 @@ type RegisterFormSchema = z.infer<typeof registerSchema>;
 
 export const SignUpView = () => {
   const trpc = useTRPC();
+  const queryClient = useQueryClient();
   const register = useMutation(trpc.auth.register.mutationOptions());
 
   const form = useForm<RegisterFormSchema>({
@@ -47,6 +48,9 @@ export const SignUpView = () => {
     register.mutate(data, {
       onError: (error) => {
         toast.error(error.message);
+      },
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(trpc.auth.session.queryFilter())
       },
     });
   };

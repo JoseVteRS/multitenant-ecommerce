@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useTRPC } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -32,9 +32,37 @@ type SigninFormSchema = z.infer<typeof loginSchema>;
 
 export const SignInView = () => {
   const router = useRouter();
+  const queryClient = useQueryClient()
 
-  const trpc = useTRPC();
-  const login = useMutation(trpc.auth.login.mutationOptions());
+  const trpc = useTRPC()
+
+  const login = useMutation(
+    {
+      mutationFn: async (values: SigninFormSchema) => {
+        const response = await fetch("/api/users/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.message || "Failed to login")
+        }
+
+        return await response.json();
+
+      },
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(trpc.auth.session.queryFilter())
+        router.push("/");
+      },
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    });
 
   const form = useForm<SigninFormSchema>({
     mode: "all",
@@ -46,14 +74,7 @@ export const SignInView = () => {
   });
 
   const onSubmit = (data: SigninFormSchema) => {
-    login.mutate(data, {
-      onSuccess: () => {
-        router.push("/");
-      },
-      onError: (error) => {
-        toast.error(error.message);
-      },
-    });
+    login.mutate(data);
   };
 
 
