@@ -1,0 +1,334 @@
+{
+    "TENANT_ID": "relion",
+    "SKIN_ID": "",
+    "AUTH_ENDPOINT": "http://localhost:8080/",
+    "DOCUMENT_UPLOAD_ENDPOINT": "https://api.eks-stage01.gigndvr.com/endeavour-graphql-mesh/verification/user-profiles/{userProfileId}/documents",
+    "BASE_URL": "https://casino-citizen.localhost:3000",
+    "ASSET_URL": "https://eks-stage01-casino-citizen.imgix.net",
+    "KEYCLOAK_REALM": "relion",
+    "KEYCLOAK_CLIENT_ID": "relion",
+    "GRAPH_ENDPOINT": "https://api.eks-stage01.gigndvr.com/endeavour-graphql-mesh/graphql",
+    "GRAPH_REALTIME_ENDPOINT": "wss://api.eks-stage01.gigndvr.com/endeavour-graphql-mesh/graphql",
+    "MARKETING_SOURCE_PARAMS": ["btag", "fid", "utm_source", "affiliate_id"],
+    "MARKETING_SOURCE_COOKIE_EXPIRY": 30,
+    "XTREMEPUSH_URL": "https://prod.webpu.sh/b_mZopy5EVBsYIC-fpjcv8s0vp2gIh9j/sdk.js",
+    "DEFAULT_LANGUAGE": "en",
+    "DEFAULT_LOCALE": "en",
+    "DEFAULT_JURISDICTION": "MGA",
+    "AVAILABLE_LOCALES": ["en", "en-GB", "en-MT", "en-US"],
+    "DEFAULT_JURISDICTION_COUNTRIES": {
+        "GB": "MGA",
+        "MT": "MGA",
+        "US": "MGA"
+    },
+    "DEFAULT_CURRENCIES": ["EUR", "USD"],
+    "SPORTNCO_NATIVE_APP": {
+        "IS_ENABLED": true,
+        "KEYCLOAK_CLIENT_ID": "mobile-relion",
+        "AUTH_POSTMESSAGE_EXCLUDED_PATHS": ["/auth", "/documents", "/app/footer", "/registration"],
+        "PARENT_ORIGIN": "https://gigen-staging.sportnco.com/"
+    },
+    "GEOLOCATION": {
+        "INSTALL_LINK": "https://install.xpoint.tech/",
+        "PROVIDER": "xpoint",
+        "CLIENT_KEY": "gig25962stg",
+        "PENDING_GRACE_PERIOD": 20000,
+        "ENHANCED_GEOLOCATION_REQUIRED": {
+            "WITHDRAWALS": true,
+            "DEPOSITS": false,
+            "GAMEPLAY": false,
+            "SPORTS": false
+        }
+    },
+    "CASHIER": {
+        "default": {
+            "DEFAULT_LIMITS": {
+                "MIN": 10,
+                "MAX": 9999
+            },
+            "DEFAULT_PRESET_AMOUNTS": [10, 50, 150]
+        },
+        "devcode": {
+            "ENVIRONMENT": "development",
+            "API_ENDPOINT": "https://test-api.paymentiq.io/paymentiq",
+            "MERCHANT_ID": "100049059",
+            "SESSION_TIMEOUT": 900000,
+            "HOSTED_FIELD_URL": "https://test-hostedpages.paymentiq.io/1.0.29/index.html"
+        },
+        "nuvei": {
+            "MERCHANT_ID": "6380118829841854659",
+            "SITE_ID": "234208",
+            "ENVIRONMENT": "int",
+            "APP_RETURN_URL": "example-app-link://cashier/nuvei/complete/{transactionId}"
+        }
+    },
+    "MINIMUM_REGISTRATION_AGE_JURISDICTION": {
+        "DEFAULT": 18,
+        "MGA": 18,
+        "UKGC": 21
+    },
+    "REGISTRATION_UTM_DATA_EXPIRY": 30,
+    "KYC": {
+        "SECTIONS": [
+            {
+                "type": "idVerificationStatus",
+                "documents": ["national_identity_card", "passport", "driving_license"],
+                "provider": {
+                    "name": "onfido",
+                    "config": {
+                        "steps": ["welcome", "document", "face", "complete"]
+                    }
+                }
+            },
+            {
+                "type": "addressVerificationStatus",
+                "countries": [
+                    "AL",
+                    "AD",
+                    "BA",
+                    "BG",
+                    "FI",
+                    "HU",
+                    "IS",
+                    "IE",
+                    "LI",
+                    "LU",
+                    "MT",
+                    "MD",
+                    "MC",
+                    "MK",
+                    "NO",
+                    "PL",
+                    "SM",
+                    "BO",
+                    "BR",
+                    "CL",
+                    "CR",
+                    "SV",
+                    "GT",
+                    "HN",
+                    "MX",
+                    "PY",
+                    "PE",
+                    "VE",
+                    "BJ",
+                    "CM",
+                    "CV",
+                    "CI",
+                    "KE",
+                    "LS",
+                    "MG",
+                    "MW",
+                    "MU",
+                    "MZ",
+                    "NA",
+                    "NG",
+                    "RW",
+                    "SC",
+                    "ZA",
+                    "SZ",
+                    "TZ",
+                    "TG",
+                    "TN",
+                    "UG",
+                    "ZM",
+                    "JP",
+                    "LA",
+                    "MY",
+                    "SG",
+                    "KR",
+                    "TH",
+                    "VN",
+                    "IN",
+                    "BD"
+                ],
+                "provider": {
+                    "name": "age-checked",
+                    "config": {
+                        "launchParameters": {
+                            "actionId": "AC0130"
+                        }
+                    }
+                }
+            },
+            {
+                "type": "addressVerificationStatus",
+                "countries": ["TH", "NG", "IN", "NZ", "BR"],
+                "documents": [
+                    "utility_bill",
+                    "bank_statement",
+                    "residence_permit",
+                    "lease_agreement"
+                ],
+                "provider": {
+                    "name": "endeavour"
+                }
+            },
+            {
+                "type": "sourceOfWealthVerificationStatus",
+                "documents": [
+                    "payslip",
+                    "employment_letter",
+                    "tax_returns",
+                    "bank_statement",
+                    "investment_statement",
+                    "insurance_proceeds_contract",
+                    "loan_contract",
+                    "grant_of_probate",
+                    "contract_of_sale",
+                    "questionnaire"
+                ],
+                "provider": {
+                    "name": "endeavour"
+                }
+            }
+        ],
+        "DOCUMENTS": {
+            "national_identity_card": {
+                "DOC_NUMBER_REQUIRED": true,
+                "DOC_EXPIRATION_REQUIRED": true,
+                "SIDES": ["FRONT", "BACK"]
+            },
+            "passport": {
+                "DOC_NUMBER_REQUIRED": true,
+                "DOC_EXPIRATION_REQUIRED": true,
+                "SIDES": ["FRONT", "BACK"]
+            },
+            "driving_license": {
+                "DOC_NUMBER_REQUIRED": true,
+                "DOC_EXPIRATION_REQUIRED": true,
+                "SIDES": ["FRONT", "BACK"]
+            },
+            "gov_photo_id": {
+                "DOC_NUMBER_REQUIRED": true,
+                "DOC_EXPIRATION_REQUIRED": true,
+                "SIDES": ["FRONT", "BACK"]
+            },
+            "military_id": {
+                "DOC_NUMBER_REQUIRED": true,
+                "DOC_EXPIRATION_REQUIRED": true,
+                "SIDES": ["FRONT", "BACK"]
+            },
+            "social_security_card": {
+                "DOC_NUMBER_REQUIRED": true,
+                "DOC_EXPIRATION_REQUIRED": true,
+                "SIDES": ["FRONT", "BACK"]
+            },
+            "resident_card": {
+                "DOC_NUMBER_REQUIRED": true,
+                "DOC_EXPIRATION_REQUIRED": true,
+                "SIDES": ["FRONT", "BACK"]
+            },
+            "alien_registration_card": {
+                "DOC_NUMBER_REQUIRED": true,
+                "DOC_EXPIRATION_REQUIRED": true,
+                "SIDES": ["FRONT", "BACK"]
+            },
+            "utility_bill": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "bank_statement": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "credit_card_statement": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "property_tax_receipt": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "voter_registration_card": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "insurance_bill": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "insurance_policy": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "residence_permit": {
+                "DOC_NUMBER_REQUIRED": true,
+                "DOC_EXPIRATION_REQUIRED": true,
+                "SIDES": ["FRONT"]
+            },
+            "lease_agreement": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "payslip": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "employment_letter": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "tax_returns": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "investment_statement": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "insurance_proceeds_contract": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "loan_contract": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "grant_of_probate": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "contract_of_sale": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "asset_ownership": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "financial_statement": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "gift_letter": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            },
+            "questionnaire": {
+                "DOC_NUMBER_REQUIRED": false,
+                "DOC_EXPIRATION_REQUIRED": false,
+                "SIDES": ["FRONT"]
+            }
+        }
+    }
+}
