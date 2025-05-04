@@ -59,7 +59,7 @@ export const ProductList = ({ category }: ProductListProps) => {
               tenantImageUrl={undefined}
               reviewRating={3}
               reviewCount={10}
-              price={100}
+              price={product.price}
             />
           ))
         )}
