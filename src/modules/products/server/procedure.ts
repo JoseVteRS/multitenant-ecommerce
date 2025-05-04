@@ -50,7 +50,7 @@ export const productsRouter = createTRPCRouter({
         const categoriesData = await ctx.db.find({
           collection: "categories",
           limit: 1,
-          depth: 0, // Populate subcategories, subcategores.[0] will be a type of "Category"
+          depth: 1, // Populate subcategories, subcategores.[0] will be a type of "Category"
           pagination: false,
           where: {
             slug: {
